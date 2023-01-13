@@ -3,12 +3,16 @@ package com.commcode.ageinminutescalculator
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var buttonSelectDate: Button
+    private lateinit var textViewSelectedDate: TextView
+    private lateinit var textViewAgeInMinutes: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +30,40 @@ class MainActivity : AppCompatActivity() {
         val month = calendar.get(Calendar.MONTH)
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
-        DatePickerDialog(
+        val datePickerDialog = DatePickerDialog(
             this,
-            { _, _, _, _ ->
-                Toast.makeText(this, "getSelectedDate works", Toast.LENGTH_SHORT).show()
+            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+                val convertedDayOfMonth: String = if (selectedDayOfMonth < 10) {
+                    "0$selectedDayOfMonth"
+                } else {
+                    "$selectedDayOfMonth"
+                }
+                val convertedMonth: String = if (selectedMonth < 9) {
+                    "0${selectedMonth + 1}"
+                } else {
+                    "${selectedMonth + 1}"
+                }
+                val selectedDate = "$convertedDayOfMonth.$convertedMonth.$selectedYear"
+                textViewSelectedDate.text = selectedDate
+
+                val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN)
+                val date = simpleDateFormat.parse(selectedDate)
+                val currentDate =
+                    simpleDateFormat.parse(simpleDateFormat.format(System.currentTimeMillis()))
+                val ageInMinutes = currentDate!!.time / 60_000 - date!!.time / 60_000
+                textViewAgeInMinutes.text = ageInMinutes.toString()
             },
             year,
             month,
             dayOfMonth
-        ).show()
+        )
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() - 8_600_000
+        datePickerDialog.show()
     }
 
     private fun initViews() {
         buttonSelectDate = findViewById(R.id.buttonSelectDate)
+        textViewSelectedDate = findViewById(R.id.textViewSelectedDate)
+        textViewAgeInMinutes = findViewById(R.id.textViewAgeInMinutes)
     }
 }
