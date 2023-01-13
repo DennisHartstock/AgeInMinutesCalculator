@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,11 +9,10 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="calculate your"
+        android:text="@string/calculate_your"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -25,24 +23,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:textSize="30sp"
-        android:text="age"
+        android:text="@string/age"
         android:textColor="@android:color/holo_orange_light"
         android:textStyle="bold"
         android:textAllCaps="true" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="in minutes"
+        android:text="@string/in_minutes"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonSelectDate"
         android:backgroundTint="@android:color/holo_orange_light"
         android:layout_width="match_parent"
         android:textColor="@android:color/holo_red_dark"
@@ -50,7 +47,7 @@
         android:textSize="20sp"
         android:layout_margin="16dp"
         android:layout_height="wrap_content"
-        android:text="select date" />
+        android:text="@string/button_select_date" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Selected date"
+        android:text="@string/selected_date"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -85,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Your age in minutes"
+        android:text="@string/your_age_in_minutes"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
